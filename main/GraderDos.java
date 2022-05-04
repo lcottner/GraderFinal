@@ -1,3 +1,9 @@
+/*Grader class that the student should not
+ * be able to see. Uses reflection, 
+ * but still needs to see the Rectangle
+ * class.
+ */
+
 package main;
 import student.Rectangle;
 
@@ -5,9 +11,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Constructor;
 public class GraderDos {
 	private static String holder;
-//private static String error="because there is not a method";
 private Rectangle r;
-
 	
 	public void run () {
 	    GraderDos a = new GraderDos();
@@ -71,8 +75,11 @@ private Rectangle r;
     	
 	}
 
-	
-	public void grade()  {
+	/*Separate classes for  
+	 * each test, so that each one
+	 * can throw method not found errors
+	 */
+	private void grade()  {
 		
 	//CalculateAreaTest1
 	r = new Rectangle(5,17);
@@ -85,7 +92,7 @@ private Rectangle r;
 	
 	}
 	
-	public void grade2()  {
+	private void grade2()  {
 		//CalculateAreaTest2
 
 		r = new Rectangle(19,32);
@@ -97,7 +104,7 @@ private Rectangle r;
 		
 	}
 	
-	public void grade3()  {
+	private void grade3()  {
 
 		//CalculatePerimeterTest1
 		 r = new Rectangle(19,32);
@@ -109,7 +116,7 @@ private Rectangle r;
 	
 	
 
-	public void grade4()  {
+	private void grade4()  {
 
 		//CalculatePerimeterTest2
 		 r = new Rectangle(12,15);
@@ -119,7 +126,7 @@ private Rectangle r;
 			writeIncorrect(holder);
 	}
 	
-	public void grade5() {
+	private void grade5() {
 		//EmptyArgumentConstructorTest
 		 
 		r = new Rectangle();
@@ -129,7 +136,7 @@ private Rectangle r;
 			writeIncorrect(holder);
 	}
 	
-	public void grade6() {
+	private void grade6() {
 		//PreferredConstructorTest1
 				 r = new Rectangle(10,20);
 				if (r.getLength()==10 && r.getWidth()==20)
@@ -140,10 +147,14 @@ private Rectangle r;
 
 	
 	
-public boolean constru() {
+	/*
+	 * Checks the Rectangle class to see if the
+	 * constructors exist and if they have the correct
+	 * parameters
+	 */
+private boolean constru() {
 	try{  
 	    Class <?> cls = Class.forName("student.Rectangle");
-		// System.out.println(cls);
 	
 	  Constructor<?> cons1 = cls.getConstructor();
 	  Constructor<?> cons2 = cls.getConstructor(int.class,int.class);
@@ -160,11 +171,11 @@ public boolean constru() {
 	}
 }
 
-//For a new grader, change the declared method names and the parameters
-//include parameters in method call, and put if statements for each method.
-//Make methods for printing out methods exceptions (like the holder)
-//Experiment with making grader into a jar file and then into a library
-public boolean method(String methodName) {
+/*
+ * Checks the Rectangle class to see if the
+ * named methods exist
+ */
+private boolean method(String methodName) {
 	try{ 
 		 Rectangle rec = new Rectangle();
 	
@@ -198,16 +209,19 @@ public boolean method(String methodName) {
 		return false;
 	}
 }
-	
-	public void writeCorrect(String a) {
+	/*
+	 * Simple methods for printing text
+	 * for the student to see
+	 */
+	private void writeCorrect(String a) {
 		System.out.println(a+ " Correct");
 	}
 	
-	public void writeIncorrect(String a) {
+	private void writeIncorrect(String a) {
 		System.out.println(a + " Incorrect");
 	}
 	
-	public static void error(String a) {
+	private static void error(String a) {
 		System.out.print("The method " +a+ " is missing -> ");
 	}
 }

@@ -1,3 +1,9 @@
+/*This is code that the student writes.
+ * This is a completed version of that
+ * code.
+ * 
+ */
+
 package student;
 
 import main.GraderDos;
@@ -43,9 +49,14 @@ public class Rectangle{
 		    return length;
 		  }
 
+		  
+		  /*
+		   * Main method that calls the grader
+		   * for grading
+		   */
 		 public static void main (String[]args) {
 			 GraderDos grader=new GraderDos();
-			 grader.run();
+			grader.run();
 		 }
 		 
 		}//end class
